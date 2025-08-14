@@ -1,1 +1,25 @@
-
+{
+  "build": {
+    "buildCommand": "",
+    "watchPatterns": []
+  },
+  "services": [
+    {
+      "name": "dvcr-backend",
+      "path": "backend",
+      "startCommand": "uvicorn main:app --host 0.0.0.0 --port $PORT",
+      "envVars": {
+        "DVCR_DB": { "value": "sqlite:///./dvcr.db" },
+        "DVCR_UPLOAD_DIR": { "value": "/app/uploads" }
+      }
+    },
+    {
+      "name": "dvcr-frontend",
+      "path": "frontend",
+      "startCommand": "npm start",
+      "envVars": {
+        "NEXT_PUBLIC_API": { "value": "REPLACE_WITH_BACKEND_URL" }
+      }
+    }
+  ]
+}
